@@ -1,0 +1,47 @@
+spring:
+  profiles:
+    active:
+    - dev
+
+---
+
+server:
+  port: 7001
+ 
+spring:
+  profiles: dev
+  application:
+    name: microservicecloud-config-eureka-client
+  
+eureka:
+  instance:
+    #hostname: localhost       #eureka服务端实例名称，单机版使用
+    hostname: eureka7001.com   #rureka集群时使用
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/   #单机版时使用
+      #defaultZone: http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/ #集群时使用
+      
+---
+
+server:
+  port: 7001
+ 
+spring:
+  profiles: test
+  application:
+    name: microservicecloud-config-eureka-client
+  
+eureka:
+  instance:
+    #hostname: localhost       #eureka服务端实例名称，单机版使用
+    hostname: eureka7001.com   #rureka集群时使用
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/   #单机版时使用
+      #defaultZone: http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/ #集群时使用
+      
